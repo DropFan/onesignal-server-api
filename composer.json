@@ -1,0 +1,14 @@
+{
+    "name": "dropfan/onesignal-server-api",
+    "description": "OneSignal server API wrapper for PHP.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "DropFan",
+            "email": "DropFan@Gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "OneSignalApi\\": "src/" }
+    }
+}
