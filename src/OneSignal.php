@@ -17,4 +17,25 @@ class OneSignal
     public function __construct($config)
     {
     }
+    /**
+     * Sends a request to OneSignal Server.
+     *
+     * @param      string  $url     The url
+     * @param      string  $method  The method
+     * @param      array   $header  The header
+     * @param      array   $fields  The fields
+     *
+     * @return     string   The response from OneSignal API
+     */
+    public function sendRequest(
+        $url = '',
+        $method = '',
+        $header = [],
+        $fields = []
+    ) {
+    }
+    public function getResponse()
+    {
+        return $this->response;
+    }
 }
