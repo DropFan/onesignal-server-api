@@ -95,10 +95,27 @@ class OneSignal
      *
      * @param      array   $fields  The fields
      *
-     * @return     Notification
+     * @return     array
      */
     public function createNotification(array $fields)
     {
+
+        if (isset($fields['app_ids']) && !empty($fields['app_ids'])) {
+            $this->appid = '';
+            $this->appkey = '';
+        } elseif (isset($fields['app_id']) && !empty($fields['app_id'])) {
+            $this->appid = $fields['app_id'];
+            $this->appkey = isset($fields['appkey']) ? $fields['appkey'] : $this->userkey;
+        } else {
+            $fields['app_id'] = $this->appid;
+        }
+        $this->setHeader($this->appid, $this->appkey);
+
+        $this->apiUrl = self::BASE_URL . 'notifications';
+        $this->method = 'POST';
+        $this->fields = json_encode($fields);
+
+        return $this->sendRequest()->getResponse();
     }
 
     /**
@@ -108,10 +125,19 @@ class OneSignal
      * @param      string  $id     (require) Notification ID.
      * @param      string  $appid  (require) App ID
      *
-     * @return     <type>  ( description_of_the_return_value )
+     * @return     array
      */
     public function cancelNotification($id, $appid = '')
     {
+        if ($appid) {
+            $this->appid = $appid;
+        }
+
+        $this->apiUrl = self::BASE_URL . "notifications/{$id}?appid={$this->appid}";
+        $this->method = 'DELETE';
+        $this->setHeader();
+
+        return $this->sendRequest()->getResponse();
     }
 
     /**
