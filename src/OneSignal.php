@@ -119,8 +119,21 @@ class OneSignal
         return $this;
     }
 
-    public function getResponse()
+    /**
+     * Gets the response from OneSignal API or model from raw response.
+     *
+     * @param  string  $model  The model name ('App/Notification/Device')
+     *                         default(raw) will return array after json_decode
+     *
+     * @return mixed  The response.
+     */
+    public function getResponse($model = 'raw')
     {
-        return $this->response;
+        $class = "\OneSignalApi\Models\{$model}";
+        if (!class_exists($class)) {
+            return $this->response;
+        } else {
+            return new $class($this->response);
+        }
     }
 }
