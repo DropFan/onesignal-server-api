@@ -80,6 +80,11 @@ $notification = [
     'included_segments' => ['All', 'Tiger'],
     'excluded_segments' => ['test users'],
     'filters' => $filters,
+
+    'send_after' => '2016-12-27 22:30:00 GMT+0800',
+
+    'ios_badgeType' => 'Increase',
+    'ios_badgeCount' => 1
 ];
 
 $r = $api->createNotification($notification);
