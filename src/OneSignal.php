@@ -129,6 +129,7 @@ class OneSignal
      */
     public function getApps()
     {
+    }
 
     /**
      * Gets the details of app in OneSignal.
