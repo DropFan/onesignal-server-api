@@ -154,8 +154,19 @@ class OneSignal
      *
      * @return array  The result from API.
      */
-    public function getNotification($id, $appid = '')
+    public function getNotification($id, $appid = '', $appkey = '')
     {
+        if ($appid) {
+            $this->appid = $appid;
+        }
+        if ($appkey) {
+            $this->appkey = $appkey;
+        }
+        $this->setHeader($this->appid, $this->appkey);
+        $this->apiUrl = self::BASE_URL . "notifications/{$id}?app_id={$this->appid}";
+        $this->method = 'GET';
+
+        return $this->sendRequest()->getResponse('Notification');
     }
 
     /**
@@ -167,11 +178,25 @@ class OneSignal
      * @param  integer  $offset  Result offset. Default is 0.
      *                           Results are sorted by queued_at in descending order.
      * @param  string   $appid   The app ID that you want to view notifications from
+     * @param  string   $appkey  The app key
      *
      * @return array   The notifications.
      */
-    public function getNotifications($limit = 50, $offset = 0, $appid = '')
+    public function getNotifications($limit = 50, $offset = 0, $appid = '', $appkey = '')
     {
+        if ($appid) {
+            $this->appid = $appid;
+        }
+        if ($appkey) {
+            $this->appkey = $appkey;
+        }
+
+        $this->setHeader($this->appid, $this->appkey);
+        $this->apiUrl = self::BASE_URL . "notifications?app_id={$this->appid}";
+        $this->apiUrl .= "&limit={$limit}&offset={$offset}";
+        $this->method = 'GET';
+
+        return $this->sendRequest()->getResponse();
     }
 
     /**
