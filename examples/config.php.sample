@@ -36,15 +36,15 @@ return [
     'apps' => [
         '{app1}' => [
             'appid' => '{appid}',
-            'apikey' => '{api key}'
+            'appkey' => '{api key}'
         ],
         '{app2}' => [
             'appid' => '{appid}',
-            'apikey' => '{api key}'
+            'appkey' => '{api key}'
         ],
         '{app3}' => [
             'appid' => '{appid}',
-            'apikey' => '{api key}'
+            'appkey' => '{api key}'
         ],
     ],
     // or you can set only one app here
