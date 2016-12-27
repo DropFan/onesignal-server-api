@@ -1,3 +1,6 @@
+#ignore config.php
+config.php
+
 ###Composer###
 
 composer.phar
