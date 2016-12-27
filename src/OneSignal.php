@@ -315,7 +315,7 @@ class OneSignal
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        if ($method === 'POST' || $method === 'PUT') {
+        if ($method !== 'GET' && in_array($method, self::METHODS)) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($ch, CURLOPT_POST, true);
             if (!empty($fields)) {
