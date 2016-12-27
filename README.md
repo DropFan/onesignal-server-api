@@ -25,7 +25,12 @@ Of course you can clone this project manually then move it into your projects.
 But for simple use (Just pass parameters via array rather than Object/Class) you can move OneSignal.php into your projects only.
 
 ## Usage:
+There are some sample code in examples dir.
+
+[https://github.com/DropFan/onesignal-server-api/tree/master/examples](https://github.com/DropFan/onesignal-server-api/tree/master/examples)
+
 You can follow the offical ducumention from OneSignal.
+
 [OneSignal API Documention](https://documentation.onesignal.com/reference)
 
 ## Contacts:
