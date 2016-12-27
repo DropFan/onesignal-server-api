@@ -129,6 +129,15 @@ class OneSignal
      */
     public function getApps()
     {
+        $this->apiUrl = self::BASE_URL . 'apps';
+        $this->method = 'GET';
+
+        $this->header = [
+            'Content-Type: application/json; charset=utf-8',
+            'Authorization: Basic ' . $this->userkey
+        ];
+
+        return $this->sendRequest()->getResponse();
     }
 
     /**
@@ -139,6 +148,19 @@ class OneSignal
      */
     public function getApp(string $appid = '')
     {
+        if (!$appid) {
+            $appid = $this->appid;
+        }
+
+        $this->apiUrl = self::BASE_URL . 'apps/' . $appid;
+        $this->method = 'GET';
+
+        $this->header = [
+            'Content-Type: application/json; charset=utf-8',
+            'Authorization: Basic ' . $this->userkey
+        ];
+
+        return $this->sendRequest()->getResponse('App');
     }
 
     /**
