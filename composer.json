@@ -1,6 +1,8 @@
 {
     "name": "dropfan/onesignal-server-api",
-    "description": "OneSignal server API wrapper for PHP.",
+    "description": "OneSignal server API wrapper for PHP. No third-party dependency.",
+    "homepage": "https://github.com/DropFan/onesignal-server-api",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
