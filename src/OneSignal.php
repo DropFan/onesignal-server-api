@@ -102,6 +102,7 @@ class OneSignal
      * @return array  The result from API.
      */
     public function getNotification($id, $appid = '')
+    {
     }
 
     /**
