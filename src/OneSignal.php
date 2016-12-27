@@ -168,6 +168,7 @@ class OneSignal
     }
 
     public function getDevice($id)
+    {
     }
 
     public function addDevice()
