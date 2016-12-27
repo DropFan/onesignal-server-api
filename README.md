@@ -16,7 +16,7 @@ I will take time to complete these in a few days.
 
 install via composer:
 
-```composer install dropfan/onesignal-server-api```
+```composer require dropfan/onesignal-server-api```
 
 Of course you can clone this project manually then move it into your projects.
 
