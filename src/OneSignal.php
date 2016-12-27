@@ -292,7 +292,8 @@ class OneSignal
      */
     public function getResponse($model = 'raw')
     {
-        $class = "\OneSignalApi\Models\{$model}";
+        $class = "OneSignalApi\Models\\{$model}";
+
         if (!class_exists($class)) {
             return $this->response;
         } else {
