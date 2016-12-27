@@ -15,9 +15,11 @@ I will take time to complete these in a few days.
 ## Installation:
 
 install via composer:
+
 ```composer install dropfan/onesignal-server-api```
 
 Of course you can clone this project manually then move it into your projects.
+
 ```git clone https://github.com/DropFan/onesignal-server-api.git```
 
 But for simple use (Just pass parameters via array rather than Object/Class) you can move OneSignal.php into your projects only.
