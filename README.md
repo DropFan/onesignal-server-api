@@ -12,9 +12,21 @@ There are several packages for OneSignal, but some rely on third-party library o
 
 I will take time to complete these in a few days.
 
+## Installation:
+
+install via composer:
+```composer install dropfan/onesignal-server-api```
+
+Of course you can clone this project manually then move it into your projects.
+```git clone https://github.com/DropFan/onesignal-server-api.git```
+
+But for simple use (Just pass parameters via array rather than Object/Class) you can move OneSignal.php into your projects only.
+
+## Usage:
+You can follow the offical ducumention from OneSignal.
 [OneSignal API Documention](https://documentation.onesignal.com/reference)
 
-# Contacts:
+## Contacts:
 Author: Tiger(DropFan)
 
 Email: <DropFan@Gmail.com>
