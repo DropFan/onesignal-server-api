@@ -61,10 +61,32 @@ class OneSignal
         $this->appid = isset($config['appid']) ? $config['appid'] : '';
         $this->appkey = isset($config['appkey']) ? $config['appkey'] : '';
 
+        $this->setHeader();
+    }
+
+    /**
+     * Sets the header for Basic HTTP Auth.
+     *
+     * @param      string  $appid   The appid
+     * @param      string  $appkey  The appkey
+     *
+     * @return     self
+     */
+    public function setHeader($appid = '', $appkey = '')
+    {
+        if (!empty($appid) && !empty($appkey)) {
+            $this->appid = $appid;
+            $this->appkey = $appkey;
+            $key = $appkey;
+        } else {
+            $key = $this->userkey;
+        }
+
         $this->header = [
             'Content-Type: application/json; charset=utf-8',
-            'Authorization: Basic ' . $this->userkey
+            'Authorization: Basic ' . $key
         ];
+        return $this;
     }
 
     /**
