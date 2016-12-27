@@ -124,18 +124,23 @@ class OneSignal
      *
      * @param      string  $id     (require) Notification ID.
      * @param      string  $appid  (require) App ID
+     * @param      string  $appkey  The appkey
      *
      * @return     array
      */
-    public function cancelNotification($id, $appid = '')
+    public function cancelNotification($id, $appid = '', $appkey = '')
     {
         if ($appid) {
             $this->appid = $appid;
         }
+        if ($appkey) {
+            $this->appkey = $appkey;
+        }
 
-        $this->apiUrl = self::BASE_URL . "notifications/{$id}?appid={$this->appid}";
+        $this->apiUrl = self::BASE_URL . "notifications/{$id}?app_id={$this->appid}";
         $this->method = 'DELETE';
-        $this->setHeader();
+
+        $this->setHeader($this->appid, $this->appkey);
 
         return $this->sendRequest()->getResponse();
     }
