@@ -66,6 +66,144 @@ class OneSignal
             'Authorization: Basic ' . $this->userkey
         ];
     }
+
+    /**
+     * Sends notifications to your users via OneSignal API
+     * @see https://documentation.onesignal.com/reference#create-notification
+     *
+     * @param      array   $fields  The fields
+     *
+     * @return     Notification
+     */
+    public function createNotification(array $fields)
+    {
+    }
+
+    /**
+     * Stop a scheduled or currently outgoing notification
+     * @see https://documentation.onesignal.com/reference#cancel-notification
+     *
+     * @param      string  $id     (require) Notification ID.
+     * @param      string  $appid  (require) App ID
+     *
+     * @return     <type>  ( description_of_the_return_value )
+     */
+    public function cancelNotification($id, $appid = '')
+    {
+    }
+
+    /**
+     * View the details of a single notification
+     * @see     https://documentation.onesignal.com/reference#view-notification
+     *
+     * @param  string  $id     (require) Notification ID
+     * @param  string  $appid  (require) App ID
+     *
+     * @return array  The result from API.
+     */
+    public function getNotification($id, $appid = '')
+    }
+
+    /**
+     * View the details of multiple notifications
+     * @see  https://documentation.onesignal.com/reference#view-notifications
+     *
+     * @param  integer  $limit   How many notifications to return.
+     *                           Max is 50. Default is 50
+     * @param  integer  $offset  Result offset. Default is 0.
+     *                           Results are sorted by queued_at in descending order.
+     * @param  string   $appid   The app ID that you want to view notifications from
+     *
+     * @return array   The notifications.
+     */
+    public function getNotifications($limit = 50, $offset = 0, $appid = '')
+    {
+    }
+
+    /**
+     * Gets the details of all apps in OneSignal.
+     * @see https://documentation.onesignal.com/reference#view-apps-apps
+     *
+     * @return string $response The response from OneSignal REST API.
+     */
+    public function getApps()
+    {
+
+    /**
+     * Gets the details of app in OneSignal.
+     * @see https://documentation.onesignal.com/reference#view-an-app
+     *
+     * @param      string  $appid  The appid
+     */
+    public function getApp(string $appid = '')
+    {
+    }
+
+    /**
+     * Creates an application in OneSignale.
+     * @see https://documentation.onesignal.com/reference#create-an-app
+     *
+     * @param  array  $bodyParams  Body parameters
+     *
+     */
+    public function createApp(array $bodyParams)
+    {
+    }
+
+    /**
+     * Updates details of application in OneSignale.
+     * @see https://documentation.onesignal.com/reference#update-an-app
+     *
+     * @param  array  $bodyParams  Body parameters
+     *
+     */
+    public function updateApp(array $bodyParams)
+    {
+    }
+
+    public function getDevices()
+    {
+    }
+
+    public function getDevice($id)
+    }
+
+    public function addDevice()
+    {
+    }
+
+    public function editDevice()
+    {
+    }
+
+    public function newSession()
+    {
+    }
+
+    public function newPurchase()
+    {
+    }
+
+    public function incrementSessionLength()
+    {
+    }
+
+    public function trackOpen()
+    {
+    }
+
+    /**
+     * Generate a compressed CSV export of all of your current user data
+     *
+     * @param      <type>  $appid   The appid
+     * @param      <type>  $appkey  The appkey
+     *
+     * @return     <type>  ( description_of_the_return_value )
+     */
+    public function exportCSV($appid, $appkey)
+    {
+    }
+
     /**
      * Sends a request to OneSignal Server.
      *
