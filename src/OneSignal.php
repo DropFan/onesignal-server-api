@@ -210,10 +210,7 @@ class OneSignal
         $this->apiUrl = self::BASE_URL . 'apps';
         $this->method = 'GET';
 
-        $this->header = [
-            'Content-Type: application/json; charset=utf-8',
-            'Authorization: Basic ' . $this->userkey
-        ];
+        $this->setHeader();
 
         return $this->sendRequest()->getResponse();
     }
@@ -233,10 +230,7 @@ class OneSignal
         $this->apiUrl = self::BASE_URL . 'apps/' . $appid;
         $this->method = 'GET';
 
-        $this->header = [
-            'Content-Type: application/json; charset=utf-8',
-            'Authorization: Basic ' . $this->userkey
-        ];
+        $this->setHeader();
 
         return $this->sendRequest()->getResponse('App');
     }
