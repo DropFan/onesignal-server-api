@@ -292,7 +292,9 @@ class OneSignal
         if ($method === 'POST' || $method === 'PUT') {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+            if (!empty($fields)) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+            }
         }
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
@@ -312,11 +314,11 @@ class OneSignal
      *
      * @return mixed  The response.
      */
-    public function getResponse($model = 'raw')
+    public function getResponse($model = '')
     {
         $class = "OneSignalApi\Models\\{$model}";
 
-        if (!class_exists($class)) {
+        if (empty($model) || !class_exists($class)) {
             return $this->response;
         } else {
             return new $class($this->response);
