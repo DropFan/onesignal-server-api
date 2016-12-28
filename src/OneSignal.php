@@ -297,12 +297,49 @@ class OneSignal
         return $this->sendRequest()->getResponse('App');
     }
 
-    public function getDevices()
+    /**
+     * View the details of multiple devices in one of your OneSignal apps
+     * @see https://documentation.onesignal.com/reference#view-devices
+     *
+     * @param  integer  $limit   How many devices to return. Max is 300. Default is 300
+     * @param  integer  $offset  Result offset. Default is 0. Results are sorted by id;
+     * @param  string   $appid   The app ID that you want to view devices from
+     *
+     * @return array   The devices.
+     */
+    public function getDevices($limit = 300, $offset = 0, $appid = '')
     {
+        if ($appid) {
+            $this->appid = $appid;
+        }
+        $this->apiUrl = self::BASE_URL . "players?app_id={$this->appid}";
+        $this->apiUrl .= "&limit={$limit}&offset={$offset}";
+        $this->method = 'GET';
+        $this->setHeader($this->appid, $this->appkey);
+
+        return $this->sendRequest()->getResponse();
     }
 
-    public function getDevice($id)
+    /**
+     * View the details of an existing device in one of your OneSignal apps
+     * @see https://documentation.onesignal.com/reference#view-device
+     *
+     * @param  string  $id     Player's OneSignal ID
+     * @param  string  $appid  Your app_id for this device
+     *
+     * @return array  The device.
+     */
+    public function getDevice($id, $appid = '')
     {
+        $this->apiUrl = self::BASE_URL . "players/{$id}";
+        if ($appid) {
+            $this->appid = $appid;
+            $this->apiUrl .= "?app_id={$appid}";
+        }
+        $this->method = 'GET';
+        $this->setHeader();
+
+        return $this->sendRequest()->getResponse('Device');
     }
 
     public function addDevice()
