@@ -366,12 +366,14 @@ class OneSignal
      */
     public function getResponse($model = '')
     {
-        $class = "OneSignalApi\Models\\{$model}";
+        $class = __NAMESPACE__.'\\Models\\'.$model;
 
-        if (empty($model) || !class_exists($class)) {
-            return $this->response;
-        } else {
+        if (!empty($model)
+            && !isset($this->response['error'])
+            && is_array($this->response)
+            && class_exists($class)) {
             return new $class($this->response);
         }
+        return $this->response;
     }
 }
