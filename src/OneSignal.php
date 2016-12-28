@@ -349,6 +349,10 @@ class OneSignal
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
         $response = curl_exec($ch);
+        $this->lastErrno = curl_errno($ch);
+        $this->lastError = curl_error($ch);
+        $this->lastHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
         $this->responseRaw = $response;
         $this->response = json_decode($response, 1);
         curl_close($ch);
