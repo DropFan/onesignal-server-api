@@ -221,13 +221,16 @@ class OneSignal
      *
      * @param      string  $appid  The appid
      */
-    public function getApp(string $appid = '')
+    public function getApp(string $appid = '', string $appkey = '')
     {
-        if (!$appid) {
-            $appid = $this->appid;
+        if ($appid) {
+            $this->appid = $appid;
+        }
+        if ($appkey) {
+            $this->appkey = $appkey;
         }
 
-        $this->apiUrl = self::BASE_URL . 'apps/' . $appid;
+        $this->apiUrl = self::BASE_URL . 'apps/' . $this->appid;
         $this->method = 'GET';
 
         $this->setHeader();
@@ -244,17 +247,51 @@ class OneSignal
      */
     public function createApp(array $bodyParams)
     {
+        $this->apiUrl = self::BASE_URL . 'apps';
+        $this->method = 'POST';
+
+        $this->setHeader();
+
+        foreach ($bodyParams as $k => $v) {
+            if ($v === '' || $v === null || $v === []) {
+                unset($bodyParams[$k]);
+            }
+        }
+
+        $this->fields = json_encode($bodyParams);
+
+        return $this->sendRequest()->getResponse('App');
     }
 
     /**
      * Updates details of application in OneSignale.
-     * @see https://documentation.onesignal.com/reference#update-an-app
+     * @see        https://documentation.onesignal.com/reference#update-an-app
      *
-     * @param  array  $bodyParams  Body parameters
+     * @param      string  $appid       The appid
+     * @param      array   $bodyParams  Body parameters
      *
+     * @return     array or app
      */
-    public function updateApp(array $bodyParams)
+    public function updateApp(array $bodyParams, $appid = '')
     {
+        if ($appid) {
+            $this->appid = $appid;
+        }
+
+        $this->apiUrl = self::BASE_URL . 'apps/' . $this->appid;
+        $this->method = 'PUT';
+
+        $this->setHeader();
+
+        foreach ($bodyParams as $k => $v) {
+            if ($v === '' || $v === null || $v === []) {
+                unset($bodyParams[$k]);
+            }
+        }
+
+        $this->fields = json_encode($bodyParams);
+
+        return $this->sendRequest()->getResponse('App');
     }
 
     public function getDevices()
