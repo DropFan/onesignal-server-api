@@ -154,7 +154,7 @@ class OneSignal
      *
      * @return array  The result from API.
      */
-    public function getNotification($id, $appid = '', $appkey = '')
+    public function getNotification(string $id, $appid = '', $appkey = '')
     {
         if ($appid) {
             $this->appid = $appid;
@@ -217,11 +217,14 @@ class OneSignal
 
     /**
      * Gets the details of app in OneSignal.
-     * @see https://documentation.onesignal.com/reference#view-an-app
+     * @see        https://documentation.onesignal.com/reference#view-an-app
      *
-     * @param      string  $appid  The appid
+     * @param      string  $appid   The appid
+     * @param      string  $appkey  The appkey
+     *
+     * @return     <type>  The application.
      */
-    public function getApp(string $appid = '', string $appkey = '')
+    public function getApp($appid = '', $appkey = '')
     {
         if ($appid) {
             $this->appid = $appid;
