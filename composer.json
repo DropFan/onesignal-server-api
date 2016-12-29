@@ -1,13 +1,15 @@
 {
     "name": "dropfan/onesignal-server-api",
-    "description": "OneSignal server API wrapper for PHP. No third-party dependency.",
+    "description": "OneSignal server API for PHP, you can push notifications to any platform. \n(iOS/APNS, Android/GCM/FCM, WP, Web/Chrome/Safari...etc.) \nNo third-party dependency that you can use this library in any project or framework.",
     "keywords": [
         "onesignal",
         "onesignal api",
         "onesignal server",
         "api",
+        "push",
         "push notification",
-        "notification"
+        "notification",
+        "WebPush",
     ],
     "homepage": "https://github.com/DropFan/onesignal-server-api",
     "type": "library",
