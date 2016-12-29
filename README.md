@@ -6,7 +6,8 @@
 [![License](https://poser.pugx.org/dropfan/onesignal-server-api/license)](https://packagist.org/packages/dropfan/onesignal-server-api)
 [![composer.lock](https://poser.pugx.org/dropfan/onesignal-server-api/composerlock)](https://packagist.org/packages/dropfan/onesignal-server-api)
 
-OneSignal server API wrapper for PHP. No third-party dependency that you can use this library in any project or framework.
+OneSignal server API for PHP, you can push notifications to any platform. (iOS/APNS, Android/GCM/FCM, WP, Web/Chrome/Safari...etc.) 
+No third-party dependency that you can use this library in any project or framework.
 
 There are several packages for OneSignal, but some rely on third-party library or certain framework components. That's reason of this project.
 
