@@ -498,7 +498,7 @@ class OneSignal
      * @param string $appkey       The appkey
      * @param array  $extra_fields default: ['location', 'country', 'rooted']
      *
-     * @return array The result from API, it contains csv download url.
+     * @return array the result from API, it contains csv download url
      */
     public function exportCSV($appid = '', $appkey = '', $extra_fields = ['location', 'country', 'rooted'])
     {
