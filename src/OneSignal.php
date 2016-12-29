@@ -463,20 +463,63 @@ class OneSignal
         return $this->sendRequest()->getResponse();
     }
 
-    public function trackOpen()
+    /**
+     * Generate a compressed CSV export of all of your current user data
+     * @see        https://documentation.onesignal.com/reference#csv-export
+     *
+     * @param      string  $appid         The app ID that you want to export
+     *                                    devices from
+     * @param      string  $appkey        The appkey
+     * @param      array   $extra_fields  default: ['location', 'country', 'rooted']
+     *
+     * @return     array
+     */
+    public function exportCSV($appid = '', $appkey = '', $extra_fields = ['location', 'country', 'rooted'])
     {
+        if ($appid) {
+            $this->appid = $appid;
+            $this->appkey = $appkey;
+        }
+        $this->setHeader($this->appid, $this->appkey);
+
+        $this->apiUrl = self::BASE_URL . 'players/csv_export?app_id=' . $this->appid;
+        $this->method = 'POST';
+
+        if ($extra_fields) {
+            $this->fields = json_encode($extra_fields);
+        } else {
+            $this->fields = [];
+        }
+
+        $response = $this->sendRequest()->getResponse();
+
+        return $response;
     }
 
     /**
-     * Generate a compressed CSV export of all of your current user data
+     * Track when users open a notification
+     * @see        https://documentation.onesignal.com/reference#track-open
      *
-     * @param      <type>  $appid   The appid
-     * @param      <type>  $appkey  The appkey
+     * @param      string  $id     Notification id
+     * @param      string  $appid  The appid
      *
-     * @return     <type>  ( description_of_the_return_value )
+     * @return     array
      */
-    public function exportCSV($appid, $appkey)
+    public function trackOpen(string $id, $appid = '')
     {
+        if (!$appid) {
+            $appid = $this->appid;
+        }
+
+        $this->apiUrl = self::BASE_URL . "notifications/{$id}";
+        $this->method = 'PUT';
+        $this->setHeader();
+
+        $fields['app_id'] = $appid;
+        $fields['opened'] = true;
+        $this->fields = json_encode($fields);
+
+        return $this->sendRequest()->getResponse();
     }
 
     /**
