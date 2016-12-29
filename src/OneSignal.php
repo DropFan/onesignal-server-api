@@ -33,7 +33,6 @@
  */
 namespace OneSignalApi;
 
-
 class OneSignal
 {
     const BASE_URL = 'https://onesignal.com/api/v1/';
@@ -84,8 +83,10 @@ class OneSignal
 
         $this->header = [
             'Content-Type: application/json; charset=utf-8',
+            // 'Content-Type: application/json;',
             'Authorization: Basic ' . $key
         ];
+
         return $this;
     }
 
@@ -99,7 +100,6 @@ class OneSignal
      */
     public function createNotification(array $fields)
     {
-
         if (isset($fields['app_ids']) && !empty($fields['app_ids'])) {
             $this->appid = '';
             $this->appkey = '';
@@ -128,18 +128,16 @@ class OneSignal
      *
      * @return     array
      */
-    public function cancelNotification($id, $appid = '', $appkey = '')
+    public function cancelNotification(string $id, $appid = '', $appkey = '')
     {
         if ($appid) {
             $this->appid = $appid;
-        }
-        if ($appkey) {
             $this->appkey = $appkey;
         }
 
         $this->apiUrl = self::BASE_URL . "notifications/{$id}?app_id={$this->appid}";
         $this->method = 'DELETE';
-
+        $this->fields = [];
         $this->setHeader($this->appid, $this->appkey);
 
         return $this->sendRequest()->getResponse();
@@ -158,13 +156,13 @@ class OneSignal
     {
         if ($appid) {
             $this->appid = $appid;
-        }
-        if ($appkey) {
             $this->appkey = $appkey;
         }
+
         $this->setHeader($this->appid, $this->appkey);
         $this->apiUrl = self::BASE_URL . "notifications/{$id}?app_id={$this->appid}";
         $this->method = 'GET';
+        $this->fields = [];
 
         return $this->sendRequest()->getResponse('Notification');
     }
@@ -186,8 +184,6 @@ class OneSignal
     {
         if ($appid) {
             $this->appid = $appid;
-        }
-        if ($appkey) {
             $this->appkey = $appkey;
         }
 
@@ -195,6 +191,7 @@ class OneSignal
         $this->apiUrl = self::BASE_URL . "notifications?app_id={$this->appid}";
         $this->apiUrl .= "&limit={$limit}&offset={$offset}";
         $this->method = 'GET';
+        $this->fields = [];
 
         return $this->sendRequest()->getResponse();
     }
@@ -209,7 +206,7 @@ class OneSignal
     {
         $this->apiUrl = self::BASE_URL . 'apps';
         $this->method = 'GET';
-
+        $this->fields = [];
         $this->setHeader();
 
         return $this->sendRequest()->getResponse();
@@ -235,7 +232,7 @@ class OneSignal
 
         $this->apiUrl = self::BASE_URL . 'apps/' . $this->appid;
         $this->method = 'GET';
-
+        $this->fields = [];
         $this->setHeader();
 
         return $this->sendRequest()->getResponse('App');
@@ -307,32 +304,37 @@ class OneSignal
      *
      * @return array   The devices.
      */
-    public function getDevices($limit = 300, $offset = 0, $appid = '')
+    public function getDevices($limit = 300, $offset = 0, $appid = '', $appkey = '')
     {
         if ($appid) {
             $this->appid = $appid;
+            $this->appkey = $appkey;
         }
+
         $this->apiUrl = self::BASE_URL . "players?app_id={$this->appid}";
         $this->apiUrl .= "&limit={$limit}&offset={$offset}";
         $this->method = 'GET';
         $this->setHeader($this->appid, $this->appkey);
+        $this->fields = [];
 
         return $this->sendRequest()->getResponse();
     }
 
     /**
      * View the details of an existing device in one of your OneSignal apps
-     * @see https://documentation.onesignal.com/reference#view-device
+     * @see        https://documentation.onesignal.com/reference#view-device
      *
-     * @param  string  $id     Player's OneSignal ID
-     * @param  string  $appid  Your app_id for this device
+     * @param      string  $id      Player's OneSignal ID
+     * @param      string  $appid   Your app_id for this device
+     * @param      string  $appkey  The appkey
      *
-     * @return array  The device.
+     * @return     array   The device.
      */
-    public function getDevice(string $id, $appid = '')
+    public function getDevice(string $id, $appid = '', $appkey = '')
     {
         if ($appid) {
             $this->appid = $appid;
+            $this->appkey = $appkey;
         }
 
         $this->apiUrl = self::BASE_URL . "players/{$id}";
@@ -340,6 +342,7 @@ class OneSignal
 
         $this->method = 'GET';
         $this->setHeader($this->appid, $this->appkey);
+        $this->fields = [];
 
         return $this->sendRequest()->getResponse('Device');
     }
