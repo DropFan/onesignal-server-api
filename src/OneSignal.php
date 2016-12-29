@@ -329,25 +329,60 @@ class OneSignal
      *
      * @return array  The device.
      */
-    public function getDevice($id, $appid = '')
+    public function getDevice(string $id, $appid = '')
     {
-        $this->apiUrl = self::BASE_URL . "players/{$id}";
         if ($appid) {
             $this->appid = $appid;
-            $this->apiUrl .= "?app_id={$appid}";
         }
+
+        $this->apiUrl = self::BASE_URL . "players/{$id}";
+        $this->apiUrl .= "?app_id={$this->appid}";
+
         $this->method = 'GET';
-        $this->setHeader();
+        $this->setHeader($this->appid, $this->appkey);
 
         return $this->sendRequest()->getResponse('Device');
     }
 
-    public function addDevice()
+    /**
+     * Register a new device to one of your OneSignal apps
+     * @see https://documentation.onesignal.com/reference#add-a-device
+     *
+     * @param      array   $fields  The body params
+     *
+     * @return     array
+     */
+    public function addDevice(array $fields)
     {
+        $this->apiUrl = self::BASE_URL . "players/";
+        $this->method = 'POST';
+
+        if (!isset($fields['app_id']) || empty($fields['app_id'])) {
+            $fields['app_id'] = $this->appid;
+        }
+        $this->fields = json_encode($fields);
+        $this->setHeader($this->appid, $this->appkey);
+
+        return $this->sendRequest()->getResponse('Device');
     }
 
-    public function editDevice()
+    /**
+     * Update an existing device in one of your OneSignal apps
+     * @see https://documentation.onesignal.com/reference#edit-device
+     *
+     * @param      string  $id      The device's OneSignal ID
+     * @param      array   $fields  The body params
+     *
+     * @return     <type>  ( description_of_the_return_value )
+     */
+    public function editDevice(string $id, array $fields)
     {
+        $this->apiUrl = self::BASE_URL . "players/{$id}";
+        $this->method = 'PUT';
+        $this->fields = json_encode($fields);
+        $this->setHeader();
+
+        return $this->sendRequest()->getResponse('Device');
     }
 
     public function newSession()
