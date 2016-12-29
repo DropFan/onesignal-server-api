@@ -9,7 +9,7 @@
         "push",
         "push notification",
         "notification",
-        "WebPush",
+        "WebPush"
     ],
     "homepage": "https://github.com/DropFan/onesignal-server-api",
     "type": "library",
