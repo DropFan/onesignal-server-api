@@ -42,5 +42,11 @@ $api = new OneSignal($config);
 
 $apps = $api->getApps();
 
-var_dump($apps);
+$appid = $config['appid'];
+$appkey = $config['appkey'];
+$app = $api->getApp($appid, $appkey);
 
+var_dump($apps);
+var_dump($app);
+
+var_dump($api->response);
