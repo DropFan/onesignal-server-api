@@ -385,16 +385,82 @@ class OneSignal
         return $this->sendRequest()->getResponse('Device');
     }
 
-    public function newSession()
+    /**
+     * Update a device's session information
+     * @see https://documentation.onesignal.com/reference#new-session
+     *
+     * @param      string  $id      Player's OneSignal ID
+     * @param      array   $fields  body params array
+     *                              [
+     *                                  'identifier' => '',
+     *                                  'language' => '',
+     *                                  'timezone' => 0,
+     *                                  'game_version' => '',
+     *                                  'device_os' => '',
+     *                                  'ad_id' => '',
+     *                                  'sdk' => '',
+     *                                  'tags' => [],
+     *                              ];
+     * @return     array
+     */
+    public function onSession(string $id, $fields = [])
     {
+        $this->apiUrl = self::BASE_URL . "players/{$id}/on_session";
+        $this->method = 'POST';
+        $this->setHeader();
+        $this->fields = json_encode($fields);
+
+        return $this->sendRequest()->getResponse();
     }
 
-    public function newPurchase()
+    /**
+     * Track a new purchase in your app
+     * @see https://documentation.onesignal.com/reference#new-purchase
+     *
+     * @param      string   $id        Player's OneSignal ID
+     * @param      array    $purchase  The purchase array
+     * @param      boolean  $existing  The existing
+     *
+     * @return     array
+     */
+    public function onPurchase(string $id, array $purchase, $existing = false)
     {
+        $this->apiUrl = self::BASE_URL . "players/{$id}/on_purchase";
+        $this->method = 'POST';
+        $this->setHeader();
+
+        $fields['purchase'] = $purchase;
+        if ($esisting) {
+            $fields['existing'] = true;
+        }
+        $this->fields = json_encode($fields);
+
+        return $this->sendRequest()->getResponse();
     }
 
-    public function incrementSessionLength()
+    /**
+     * Update a device's session length upon app resuming
+     * @see https://documentation.onesignal.com/reference#increment-session-length
+     *
+     * @param      string   $id           Player's OneSignal ID
+     * @param      integer  $active_time  The active time
+     * @param      string   $state        The state
+     *
+     * @return     array    ( description_of_the_return_value )
+     */
+    public function onFocus(string $id, $active_time = 60, $state = 'ping')
     {
+        $this->apiUrl = self::BASE_URL . "players/{$id}/on_focus";
+        $this->method = 'POST';
+        $this->setHeader();
+
+        $fields = [
+            'state' => 'ping',
+            'active_time' => $active_time
+        ];
+        $this->fields = json_encode($fields);
+
+        return $this->sendRequest()->getResponse();
     }
 
     public function trackOpen()
