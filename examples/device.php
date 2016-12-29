@@ -1,6 +1,6 @@
 <?php
 /**
- * MIT License
+ * MIT License.
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -40,15 +40,15 @@ $config = require 'config.php';
 $api = new OneSignal($config);
 
 $r = $api->getDevices(); // return array of devices
-echo 'getDevices():'.PHP_EOL;
+echo 'getDevices():' . PHP_EOL;
 var_dump($r);
 
 $device_id = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
 
 // var_dump($r); // object of Device or array
-echo '========================================================'.PHP_EOL;
+echo '========================================================' . PHP_EOL;
 $r = $api->getDevice($device_id);
-echo 'getDevice():'.PHP_EOL;
+echo 'getDevice():' . PHP_EOL;
 var_dump($api->response); // array after json_decode()
 
 $bodyParams = [
@@ -88,7 +88,7 @@ $bodyParams = [
     'test_type' => null,  // 1 = Development
                           // 2 = Ad-Hoc
     'long' => 0.0, // longitude
-    'lat' => 0.0 // latitude
+    'lat' => 0.0, // latitude
 ];
 $body = array_merge($bodyParams, $r->bodyParams);
 $tags = $body['tags'];
@@ -96,21 +96,21 @@ $tags['test_tag'] = 'add_by_tiger';
 $body['tags'] = $tags;
 
 $api->editDevice($device_id, $body);
-echo 'editDevice():'.PHP_EOL;
+echo 'editDevice():' . PHP_EOL;
 var_dump($api->response);
-echo '========================================================'.PHP_EOL;
+echo '========================================================' . PHP_EOL;
 $api->addDevice($body);
-echo 'addDevice():'.PHP_EOL;
+echo 'addDevice():' . PHP_EOL;
 var_dump($api->response);
-echo '========================================================'.PHP_EOL;
+echo '========================================================' . PHP_EOL;
 $api->onSession($device_id, $body);
-echo 'onSession():'.PHP_EOL;
+echo 'onSession():' . PHP_EOL;
 var_dump($api->response);
-echo '========================================================'.PHP_EOL;
+echo '========================================================' . PHP_EOL;
 $api->onFocus($device_id, 3);
-echo 'onFocus():'.PHP_EOL;
+echo 'onFocus():' . PHP_EOL;
 var_dump($api->response);
-echo '========================================================'.PHP_EOL;
-echo 'exportCSV():'.PHP_EOL;
+echo '========================================================' . PHP_EOL;
+echo 'exportCSV():' . PHP_EOL;
 $api->exportCSV();
 var_dump($api->response);
