@@ -41,7 +41,7 @@ class OneSignal
 
     public $config = [];
     public $apps = [];
-
+    public $userkey;
     public $appid;
     public $appkey;
 
@@ -51,6 +51,11 @@ class OneSignal
     public $fields;
 
     public $response;
+    public $responseRaw;
+
+    public $lastErrno;
+    public $lastError;
+    public $lastHttpCode;
 
     public function __construct($config)
     {
@@ -206,7 +211,7 @@ class OneSignal
      *
      * @see https://documentation.onesignal.com/reference#view-apps-apps
      *
-     * @return string $response the response from OneSignal REST API
+     * @return array response from API
      */
     public function getApps()
     {
@@ -366,7 +371,7 @@ class OneSignal
      *
      * @param array $fields The body params
      *
-     * @return array
+     * @return array the device
      */
     public function addDevice(array $fields)
     {
@@ -390,7 +395,7 @@ class OneSignal
      * @param string $id     The device's OneSignal ID
      * @param array  $fields The body params
      *
-     * @return <type> ( description_of_the_return_value )
+     * @return array the device
      */
     public function editDevice(string $id, array $fields)
     {
@@ -449,8 +454,9 @@ class OneSignal
         $this->method = 'POST';
         $this->setHeader();
 
+        $fields = [];
         $fields['purchase'] = $purchase;
-        if ($esisting) {
+        if ($existing) {
             $fields['existing'] = true;
         }
         $this->fields = json_encode($fields);
@@ -465,11 +471,10 @@ class OneSignal
      *
      * @param string $id          Player's OneSignal ID
      * @param int    $active_time The active time
-     * @param string $state       The state
      *
      * @return array
      */
-    public function onFocus(string $id, $active_time = 60, $state = 'ping')
+    public function onFocus(string $id, $active_time = 60)
     {
         $this->apiUrl = self::BASE_URL . "players/{$id}/on_focus";
         $this->method = 'POST';
@@ -493,7 +498,7 @@ class OneSignal
      * @param string $appkey       The appkey
      * @param array  $extra_fields default: ['location', 'country', 'rooted']
      *
-     * @return array
+     * @return array The result from API, it contains csv download url.
      */
     public function exportCSV($appid = '', $appkey = '', $extra_fields = ['location', 'country', 'rooted'])
     {
@@ -506,7 +511,7 @@ class OneSignal
         $this->apiUrl = self::BASE_URL . 'players/csv_export?app_id=' . $this->appid;
         $this->method = 'POST';
 
-        if ($extra_fields) {
+        if (!empty($extra_fields)) {
             $this->fields = json_encode($extra_fields);
         } else {
             $this->fields = [];
@@ -536,9 +541,10 @@ class OneSignal
         $this->apiUrl = self::BASE_URL . "notifications/{$id}";
         $this->method = 'PUT';
         $this->setHeader();
-
-        $fields['app_id'] = $appid;
-        $fields['opened'] = true;
+        $fields = [
+            'app_id' => $appid,
+            'opened' => true,
+        ];
         $this->fields = json_encode($fields);
 
         return $this->sendRequest()->getResponse();
@@ -560,19 +566,19 @@ class OneSignal
         $header = [],
         $fields = []
     ) {
-        if (!$url) {
+        if (empty($url)) {
             $url = $this->apiUrl;
         }
 
-        if (!$method || !in_array($method, self::METHODS)) {
+        if (empty($method) || !in_array($method, self::METHODS)) {
             $method = $this->method;
         }
 
-        if (!$header) {
+        if (empty($header)) {
             $header = $this->header;
         }
 
-        if (!$fields) {
+        if (empty($fields)) {
             $fields = $this->fields;
         }
 
