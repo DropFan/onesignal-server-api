@@ -1,6 +1,6 @@
 <?php
 /**
- * MIT License
+ * MIT License.
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -83,7 +83,7 @@ $notification = [
     'send_after' => '2016-12-27 22:30:00 GMT+0800',
 
     'ios_badgeType' => 'Increase',
-    'ios_badgeCount' => 1
+    'ios_badgeCount' => 1,
 ];
 
 $r = $api->createNotification($notification);
