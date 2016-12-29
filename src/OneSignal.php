@@ -1,7 +1,6 @@
 <?php
 /**
  * MIT License
- * ===========
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -24,12 +23,13 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * @package    OneSignal-server-api
- * @author     DropFan <DropFan@Gmail.com>
- * @copyright  2016 DropFan.
- * @license    http://www.opensource.org/licenses/mit-license.php  MIT License
- * @version    0.1
- * @link       https://github.com/DropFan/onesignal-server-api
+ * @author    DropFan <DropFan@Gmail.com>
+ * @copyright 2016 DropFan.
+ * @license   http://www.opensource.org/licenses/mit-license.php  MIT License
+ *
+ * @version 0.1
+ *
+ * @link https://github.com/DropFan/onesignal-server-api
  */
 namespace OneSignalApi;
 
@@ -66,10 +66,10 @@ class OneSignal
     /**
      * Sets the header for Basic HTTP Auth.
      *
-     * @param      string  $appid   The appid
-     * @param      string  $appkey  The appkey
+     * @param string $appid  The appid
+     * @param string $appkey The appkey
      *
-     * @return     self
+     * @return self
      */
     public function setHeader($appid = '', $appkey = '')
     {
@@ -92,11 +92,12 @@ class OneSignal
 
     /**
      * Sends notifications to your users via OneSignal API
+     *
      * @see https://documentation.onesignal.com/reference#create-notification
      *
-     * @param      array   $fields  The fields
+     * @param array $fields The fields
      *
-     * @return     array
+     * @return array
      */
     public function createNotification(array $fields)
     {
@@ -120,13 +121,14 @@ class OneSignal
 
     /**
      * Stop a scheduled or currently outgoing notification
+     *
      * @see https://documentation.onesignal.com/reference#cancel-notification
      *
-     * @param      string  $id     (require) Notification ID.
-     * @param      string  $appid  (require) App ID
-     * @param      string  $appkey  The appkey
+     * @param string $id     (require) Notification ID.
+     * @param string $appid  App ID
+     * @param string $appkey The appkey
      *
-     * @return     array
+     * @return array
      */
     public function cancelNotification(string $id, $appid = '', $appkey = '')
     {
@@ -145,10 +147,11 @@ class OneSignal
 
     /**
      * View the details of a single notification
-     * @see     https://documentation.onesignal.com/reference#view-notification
      *
-     * @param  string  $id     (require) Notification ID
-     * @param  string  $appid  (require) App ID
+     * @see https://documentation.onesignal.com/reference#view-notification
+     *
+     * @param string $id    (require) Notification ID
+     * @param string $appid (require) App ID
      *
      * @return array  The result from API.
      */
@@ -169,14 +172,15 @@ class OneSignal
 
     /**
      * View the details of multiple notifications
-     * @see  https://documentation.onesignal.com/reference#view-notifications
      *
-     * @param  integer  $limit   How many notifications to return.
-     *                           Max is 50. Default is 50
-     * @param  integer  $offset  Result offset. Default is 0.
-     *                           Results are sorted by queued_at in descending order.
-     * @param  string   $appid   The app ID that you want to view notifications from
-     * @param  string   $appkey  The app key
+     * @see https://documentation.onesignal.com/reference#view-notifications
+     *
+     * @param integer $limit  How many notifications to return.
+     *                        Max is 50. Default is 50.
+     * @param integer $offset Result offset. Default is 0.
+     *                        Results are sorted by queued_at in descending order.
+     * @param string  $appid  The app ID that you want to view notifications from
+     * @param string  $appkey The app key
      *
      * @return array   The notifications.
      */
@@ -198,6 +202,7 @@ class OneSignal
 
     /**
      * Gets the details of all apps in OneSignal.
+     *
      * @see https://documentation.onesignal.com/reference#view-apps-apps
      *
      * @return string $response The response from OneSignal REST API.
@@ -214,12 +219,13 @@ class OneSignal
 
     /**
      * Gets the details of app in OneSignal.
-     * @see        https://documentation.onesignal.com/reference#view-an-app
      *
-     * @param      string  $appid   The appid
-     * @param      string  $appkey  The appkey
+     * @see https://documentation.onesignal.com/reference#view-an-app
      *
-     * @return     <type>  The application.
+     * @param string $appid  The appid
+     * @param string $appkey The appkey
+     *
+     * @return array
      */
     public function getApp($appid = '', $appkey = '')
     {
@@ -240,10 +246,12 @@ class OneSignal
 
     /**
      * Creates an application in OneSignale.
+     *
      * @see https://documentation.onesignal.com/reference#create-an-app
      *
-     * @param  array  $bodyParams  Body parameters
+     * @param array $bodyParams Body parameters
      *
+     * @return array
      */
     public function createApp(array $bodyParams)
     {
@@ -265,12 +273,13 @@ class OneSignal
 
     /**
      * Updates details of application in OneSignale.
-     * @see        https://documentation.onesignal.com/reference#update-an-app
      *
-     * @param      string  $appid       The appid
-     * @param      array   $bodyParams  Body parameters
+     * @see https://documentation.onesignal.com/reference#update-an-app
      *
-     * @return     array or app
+     * @param string $appid      The appid
+     * @param array  $bodyParams Body parameters
+     *
+     * @return array or app
      */
     public function updateApp(array $bodyParams, $appid = '')
     {
@@ -296,11 +305,12 @@ class OneSignal
 
     /**
      * View the details of multiple devices in one of your OneSignal apps
+     *
      * @see https://documentation.onesignal.com/reference#view-devices
      *
-     * @param  integer  $limit   How many devices to return. Max is 300. Default is 300
-     * @param  integer  $offset  Result offset. Default is 0. Results are sorted by id;
-     * @param  string   $appid   The app ID that you want to view devices from
+     * @param integer $limit  How many devices to return. Max is 300. Default is 300
+     * @param integer $offset Result offset. Default is 0. Results are sorted by id;
+     * @param string  $appid  The app ID that you want to view devices from
      *
      * @return array   The devices.
      */
@@ -322,13 +332,14 @@ class OneSignal
 
     /**
      * View the details of an existing device in one of your OneSignal apps
-     * @see        https://documentation.onesignal.com/reference#view-device
      *
-     * @param      string  $id      Player's OneSignal ID
-     * @param      string  $appid   Your app_id for this device
-     * @param      string  $appkey  The appkey
+     * @see https://documentation.onesignal.com/reference#view-device
      *
-     * @return     array   The device.
+     * @param string $id     Player's OneSignal ID
+     * @param string $appid  Your app_id for this device
+     * @param string $appkey The appkey
+     *
+     * @return array   The device.
      */
     public function getDevice(string $id, $appid = '', $appkey = '')
     {
@@ -349,11 +360,12 @@ class OneSignal
 
     /**
      * Register a new device to one of your OneSignal apps
+     *
      * @see https://documentation.onesignal.com/reference#add-a-device
      *
-     * @param      array   $fields  The body params
+     * @param array $fields The body params
      *
-     * @return     array
+     * @return array
      */
     public function addDevice(array $fields)
     {
@@ -371,12 +383,13 @@ class OneSignal
 
     /**
      * Update an existing device in one of your OneSignal apps
+     *
      * @see https://documentation.onesignal.com/reference#edit-device
      *
-     * @param      string  $id      The device's OneSignal ID
-     * @param      array   $fields  The body params
+     * @param string $id     The device's OneSignal ID
+     * @param array  $fields The body params
      *
-     * @return     <type>  ( description_of_the_return_value )
+     * @return <type>  ( description_of_the_return_value )
      */
     public function editDevice(string $id, array $fields)
     {
@@ -390,21 +403,22 @@ class OneSignal
 
     /**
      * Update a device's session information
+     *
      * @see https://documentation.onesignal.com/reference#new-session
      *
-     * @param      string  $id      Player's OneSignal ID
-     * @param      array   $fields  body params array
-     *                              [
-     *                                  'identifier' => '',
-     *                                  'language' => '',
-     *                                  'timezone' => 0,
-     *                                  'game_version' => '',
-     *                                  'device_os' => '',
-     *                                  'ad_id' => '',
-     *                                  'sdk' => '',
-     *                                  'tags' => [],
-     *                              ];
-     * @return     array
+     * @param  string $id     Player's OneSignal ID
+     * @param  array  $fields body params array
+     *                        [
+     *                            'identifier' => '',
+     *                            'language' => '',
+     *                            'timezone' => 0,
+     *                            'game_version' => '',
+     *                            'device_os' => '',
+     *                            'ad_id' => '',
+     *                            'sdk' => '',
+     *                            'tags' => [],
+     *                        ];
+     * @return array
      */
     public function onSession(string $id, $fields = [])
     {
@@ -418,13 +432,14 @@ class OneSignal
 
     /**
      * Track a new purchase in your app
+     *
      * @see https://documentation.onesignal.com/reference#new-purchase
      *
-     * @param      string   $id        Player's OneSignal ID
-     * @param      array    $purchase  The purchase array
-     * @param      boolean  $existing  The existing
+     * @param string  $id       Player's OneSignal ID
+     * @param array   $purchase The purchase array
+     * @param boolean $existing The existing
      *
-     * @return     array
+     * @return array
      */
     public function onPurchase(string $id, array $purchase, $existing = false)
     {
@@ -443,13 +458,14 @@ class OneSignal
 
     /**
      * Update a device's session length upon app resuming
+     *
      * @see https://documentation.onesignal.com/reference#increment-session-length
      *
-     * @param      string   $id           Player's OneSignal ID
-     * @param      integer  $active_time  The active time
-     * @param      string   $state        The state
+     * @param string  $id          Player's OneSignal ID
+     * @param integer $active_time The active time
+     * @param string  $state       The state
      *
-     * @return     array    ( description_of_the_return_value )
+     * @return array
      */
     public function onFocus(string $id, $active_time = 60, $state = 'ping')
     {
@@ -468,14 +484,14 @@ class OneSignal
 
     /**
      * Generate a compressed CSV export of all of your current user data
-     * @see        https://documentation.onesignal.com/reference#csv-export
      *
-     * @param      string  $appid         The app ID that you want to export
-     *                                    devices from
-     * @param      string  $appkey        The appkey
-     * @param      array   $extra_fields  default: ['location', 'country', 'rooted']
+     * @see https://documentation.onesignal.com/reference#csv-export
      *
-     * @return     array
+     * @param string $appid        The app ID that you want to export devices from.
+     * @param string $appkey       The appkey
+     * @param array  $extra_fields default: ['location', 'country', 'rooted']
+     *
+     * @return array
      */
     public function exportCSV($appid = '', $appkey = '', $extra_fields = ['location', 'country', 'rooted'])
     {
@@ -501,12 +517,13 @@ class OneSignal
 
     /**
      * Track when users open a notification
-     * @see        https://documentation.onesignal.com/reference#track-open
      *
-     * @param      string  $id     Notification id
-     * @param      string  $appid  The appid
+     * @see https://documentation.onesignal.com/reference#track-open
      *
-     * @return     array
+     * @param string $id    Notification id
+     * @param string $appid The appid
+     *
+     * @return array
      */
     public function trackOpen(string $id, $appid = '')
     {
@@ -528,12 +545,12 @@ class OneSignal
     /**
      * Sends a request to OneSignal Server.
      *
-     * @param      string  $url     The url
-     * @param      string  $method  The method
-     * @param      array   $header  The header
-     * @param      array   $fields  The fields
+     * @param string $url    The url
+     * @param string $method The method
+     * @param array  $header The header
+     * @param array  $fields The fields
      *
-     * @return     string   The response from OneSignal API
+     * @return string   The response from OneSignal API
      */
     public function sendRequest(
         $url = '',
@@ -587,8 +604,8 @@ class OneSignal
     /**
      * Gets the response from OneSignal API or model from raw response.
      *
-     * @param  string  $model  The model name ('App/Notification/Device')
-     *                         default(raw) will return array after json_decode
+     * @param string $model The model name ('App/Notification/Device')
+     *                      default: will return response array after json_decode
      *
      * @return mixed  The response.
      */
@@ -599,7 +616,8 @@ class OneSignal
         if (!empty($model)
             && !isset($this->response['error'])
             && is_array($this->response)
-            && class_exists($class)) {
+            && class_exists($class)
+        ) {
             return new $class($this->response);
         }
         return $this->response;
