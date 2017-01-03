@@ -1,6 +1,6 @@
 <?php
 /**
- * MIT License
+ * MIT License.
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -31,6 +31,7 @@
  *
  * @link https://github.com/DropFan/onesignal-server-api
  */
+
 namespace OneSignalApi\Models;
 
 abstract class BaseModel
@@ -93,6 +94,7 @@ abstract class BaseModel
     public function __toString()
     {
         $all = $this->getAllFields();
+
         return json_encode($all, JSON_NUMERIC_CHECK);
     }
 
@@ -115,6 +117,7 @@ abstract class BaseModel
         if (isset($this->bodyParams[$name])) {
             $this->bodyParams[$name] = $value;
         }
+
         return $value;
     }
 }

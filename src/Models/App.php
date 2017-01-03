@@ -1,6 +1,6 @@
 <?php
 /**
- * MIT License
+ * MIT License.
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -31,6 +31,7 @@
  *
  * @link https://github.com/DropFan/onesignal-server-api
  */
+
 namespace OneSignalApi\Models;
 
 class App extends BaseModel

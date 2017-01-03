@@ -1,6 +1,6 @@
 <?php
 /**
- * MIT License
+ * MIT License.
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -31,6 +31,7 @@
  *
  * @link https://github.com/DropFan/onesignal-server-api
  */
+
 namespace OneSignalApi\Models;
 
 class Device extends BaseModel
@@ -94,6 +95,6 @@ class Device extends BaseModel
         'test_type' => null,  // 1 = Development
                               // 2 = Ad-Hoc
         'long' => 0.0, // longitude
-        'lat' => 0.0 // latitude
+        'lat' => 0.0, // latitude
     ];
 }

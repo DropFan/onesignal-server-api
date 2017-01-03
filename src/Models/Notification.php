@@ -1,6 +1,6 @@
 <?php
 /**
- * MIT License
+ * MIT License.
  *
  * Copyright (c) 2016 DropFan <DropFan@Gmail.com>
  *
@@ -31,6 +31,7 @@
  *
  * @link https://github.com/DropFan/onesignal-server-api
  */
+
 namespace OneSignalApi\Models;
 
 class Notification extends BaseModel
@@ -77,7 +78,6 @@ class Notification extends BaseModel
                             // This field supports inline substitutions.
                             // @see https://documentation.onesignal.com/docs/notification-content#section-notification-content-substitution
 
-
         'template_id' => '',    // Use a template you setup on our dashboard.
                                 // You can override the template values by sending other parameters with the request.
                                 // The template_id is the UUID found in the URL when viewing a template on our dashboard.
@@ -95,20 +95,18 @@ class Notification extends BaseModel
         // Attachments, buttons, Appearance, delivery, group_collapse
         // will merge $this->attachments/ $this->buttons/ $this->appearance / $this->delivery / $this->group_collapse
 
-
         'filters' => [],
     ];
 
-
     public $headings = [
         'en' => 'english title',
-        'zh' => 'chinese title'
+        'zh' => 'chinese title',
     ];
 
     // subtitle only iOS 10+
     public $subtitle = [
         'en' => 'english subtitle',
-        'zh' => 'chinese subtitle'
+        'zh' => 'chinese subtitle',
     ];
 
     // REQUIRED unless content_available=true or template_id is set.
@@ -126,7 +124,7 @@ class Notification extends BaseModel
         'ios_attachments' => [],    // only iOS 10+
         'big_picture' => '',        // only Android
         'adm_big_picture' => '',    // only amazon
-        'chrome_big_picture' => ''  // only Chrome App
+        'chrome_big_picture' => '', // only Chrome App
     ];
 
     /**
@@ -159,7 +157,7 @@ class Notification extends BaseModel
                                 //      "icon": "http://i.imgur.com/MIxJp1L.png",
                                 //      "url": "https://yoursite.com"
                                 // }]
-        'ios_category' => ''    // iOS
+        'ios_category' => '',   // iOS
                                 // Category APS payload, use with registerUserNotificationSettings:categories in your Objective-C / Swift code.
                                 // Example: calendar category which contains actions like accept and decline
                                 // iOS 10+ This will trigger your UNNotificationContentExtension whose ID matches this category.
@@ -196,7 +194,7 @@ class Notification extends BaseModel
         'ios_badgeCount' => '',         // iOS
                                         // Used with ios_badgeType, describes the value to set or amount to increase/decrease your app's iOS badge count by.
                                         // You can use a negative number to decrease the badge count when used with an ios_badgeType of Increase.
-        'collapse_id' => ''             // iOS 10+ ANDROID
+        'collapse_id' => '',            // iOS 10+ ANDROID
                                         // Only one notification with the same id will be shown on the device.
                                         // Use the same id to update an existing notification instead of showing a new one.
                                         // This is known as apns-collapse-id on iOS and collapse_key on Android.
@@ -222,10 +220,10 @@ class Notification extends BaseModel
                      // Time To Live - In seconds.
                      // The notification will be expired if the device does not come back online within this time.
                      // The default is 259,200 seconds (3 days).
-        'priority' => '' // iOS, ANDROID, CHROME, CHROMEWEB
-                         // Delivery priority through the push server (example GCM/FCM).
-                         // Pass 10 for high priority. Defaults to normal priority for Android and high for iOS.
-                         // For Android 6.0+ devices setting priority to high will wake the device out of doze mode.
+        'priority' => '', // iOS, ANDROID, CHROME, CHROMEWEB
+                          // Delivery priority through the push server (example GCM/FCM).
+                          // Pass 10 for high priority. Defaults to normal priority for Android and high for iOS.
+                          // For Android 6.0+ devices setting priority to high will wake the device out of doze mode.
     ];
 
     /**
@@ -235,7 +233,7 @@ class Notification extends BaseModel
         'android_group' => '',          // ANDROID
         'android_group_message' => [],  // ANDROID
         'adm_group' => '',              // AMAZON
-        'adm_group_message' => []       // AMAZON
+        'adm_group_message' => [],      // AMAZON
     ];
 
     /**
@@ -252,7 +250,7 @@ class Notification extends BaseModel
         'isWP' => true,
         'isWP_WNS' => true,
         'isAdm' => true,
-        'isChrome' => true
+        'isChrome' => true,
     ];
 
     /**
@@ -304,7 +302,7 @@ class Notification extends BaseModel
         'location' => [],       // radius = in meters
                                 // lat = latitude
                                 // long = longitude
-        'email' => []           // value = email address
+        'email' => [],          // value = email address
     ];
 
     /**
