@@ -8,47 +8,14 @@
 [![StyleCI](https://styleci.io/repos/77390759/shield?branch=master)](https://styleci.io/repos/77390759)
 
 OneSignal server API for PHP, you can push notifications to any platform. (iOS/APNS, Android/GCM/FCM, WP, Web/Chrome/Safari...etc.)
- 
+
 No third-party dependency that you can use this library in any project or framework.
 
 There are several packages for OneSignal, but some rely on third-party library or certain framework components. That's reason of this project.
 
-I will complete these when I have enough time.
+## Requirements:
 
-##### TODO:
-* OneSignal API wrapper (80%) // not fully test
-	* Notifications (100%)
-		* create
-		* view 
-		* update
-	* Devices (100%)
-		* add
-		* edit
-		* view 
-	* Apps (100%)
-		* create
-		* view
-		* update 
-	* Other API (100%)
-		* on_session
-		* on_purchase
-		* on_focus
-		* csv_export 
-		* track open
-	* request (via curl) (100%)
-	* request (via fsock) (0%)   // for non-blocking request
-* Models	(50%) // just finish fields and body params, no ORM-style operation)
-	* BaseModel
-	* Notification
-	* Device
-	* App
-* ORM-style (1%)
-* PSR-2、PSR-4 (100%)
-* Documents & Comments (about 60%~80%?)
-* PHPUnit (0%)
-* submit to packagist (100%)
-* release 1.0 (coming soon...)
-* release 2.0 // will support ORM operation
+You'll need at least PHP 5.6.
 
 ## Installation:
 
@@ -86,3 +53,43 @@ Telegram: [DropFan](https://telegram.me/DropFan)
 
 ## LICENSE:
 [MIT License](https://github.com/DropFan/onesignal-server-api/tree/master/LICENSE)
+
+
+
+##### TODO:
+
+I will complete follow list when I have enough time.
+
+* OneSignal API wrapper (80%) // not fully test
+	* Notifications (100%)
+		* create
+		* view
+		* update
+	* Devices (100%)
+		* add
+		* edit
+		* view
+	* Apps (100%)
+		* create
+		* view
+		* update
+	* Other API (100%)
+		* on_session
+		* on_purchase
+		* on_focus
+		* csv_export
+		* track open
+	* request (via curl) (100%)
+	* request (via fsock) (0%)   // for non-blocking request
+* Models	(50%) // just finish fields and body params, no ORM-style operation)
+	* BaseModel
+	* Notification
+	* Device
+	* App
+* ORM-style (1%)
+* PSR-2、PSR-4 (100%)
+* Documents & Comments (about 60%~80%?)
+* PHPUnit (0%)
+* submit to packagist (100%)
+* release 1.0 (coming soon...)
+* release 2.0 // will support ORM operation
